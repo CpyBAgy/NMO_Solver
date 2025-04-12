@@ -1,10 +1,97 @@
-# NMO_Parser
-Parser for solving NMO tests (edu.rosminzdrav.ru)
-Can really help doctors to earn NMO point 
+# NMO Solver
 
-Can solve ONLY tests with answers in 24forcare.com
-To use just fill in Login information in same named field and start
+Автоматизированное решение тестов NMO портала Росминздрава с сохранением и использованием правильных ответов.
 
-function Run: solve tests one by one (waiting for other link when finished)
+## Функциональность
 
-function Run_many: solve tests for all links you have given
+- Автоматическая авторизация на портале
+- Поиск ответов на тесты через внешний ресурс
+- Сохранение и использование правильных ответов для последующих попыток
+- Методы "умного перебора" для нахождения правильных комбинаций ответов
+- Поддержка вопросов с одним или несколькими вариантами ответа
+
+## Установка
+
+1. Клонируйте репозиторий:
+```
+git clone https://github.com/CpyBAgy/NMO_Solver.git
+cd NMO_Solver
+```
+
+2. Установите зависимости:
+```
+pip install -e .
+```
+
+или
+
+```
+pip install -r requirements.txt
+```
+
+3. Настройте параметры в файле `nmo_solver/config.py`:
+```python
+USERNAME = "000-000-000 00"  # Ваш СНИЛС
+PASSWORD = "ваш_пароль"      # Ваш пароль
+PATH_TO_CHROME_PROFILE = "/путь/к/профилю/Chrome"  # Путь к профилю браузера Chrome
+```
+
+4. Чтобы найти профилm Google Chrome, вам нужно перейти в определенную директорию на вашем компьютере, которая зависит от операционной системы.
+
+>В Windows:
+>1. Нажмите Win+R для открытия окна "Выполнить"
+>2. Введите: %LOCALAPPDATA%\Google\Chrome\User Data
+>3. Нажмите OK, и откроется папка с профилями Chrome
+>
+>В macOS:
+>1. Откройте Finder
+>2. В меню выберите "Переход" → "Переход к папке"
+>3. Введите: ~/Library/Application Support/Google/Chrome
+>4. Нажмите Enter
+>
+>В Linux:
+>1. Откройте файловый менеджер
+>2. Перейдите к: ~/.config/google-chrome
+>
+>В папке User Data/Chrome вы увидите папки с названиями "Default", "Profile 1", "Profile 2" и т.д. Это и есть папки ваших профилей Chrome. Папка "Default" - это ваш основной профиль.
+
+## Использование
+
+### Через командную строку
+
+```
+python -m nmo_solver.main
+```
+
+### Через файл с URL
+
+Создайте файл `urls.txt` с URL тестов (по одному на строку), затем запустите:
+
+```
+python -m nmo_solver.main --file
+```
+
+### Программно
+
+```python
+from nmo_solver.main import NmoParser
+
+parser = NmoParser()
+parser.solve("https://nmfo-vo.edu.rosminzdrav.ru/#/user-account/view-iom/ваш-id-теста")
+```
+
+## Структура проекта
+
+- `nmo_solver/` - основной пакет
+  - `config.py` - настройки программы
+  - `driver.py` - настройка и управление веб-драйвером
+  - `parsers/` - модули для парсинга информации
+  - `models/` - модели данных
+  - `utils/` - вспомогательные функции
+  - `main.py` - основной модуль программы
+
+## Примечания
+
+- Для корректной работы программы требуется установленный Chrome/Chromium
+- Программа использует библиотеку Selenium для взаимодействия с браузером
+- Ответы на тесты сохраняются в папке `answers/` для последующего использования
