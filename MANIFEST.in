@@ -1,0 +1,14 @@
+include LICENSE
+include README.md
+include requirements.txt
+include pyproject.toml
+recursive-include nmo_solver *.py
+include nmo_solver/user_config.py.example
+exclude nmo_solver/user_config.py
+exclude nmo_solver/answers/*
+exclude nmo_solver/certificates/*
+exclude *.pyc
+exclude __pycache__/
+exclude *.egg-info/
+exclude dist/
+exclude build/

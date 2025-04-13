@@ -1,0 +1,21 @@
+"""
+Персональные настройки пользователя.
+Скопируйте этот файл в user_config.py и заполните своими данными.
+Файл user_config.py не будет отслеживаться Git.
+"""
+
+# Личные данные пользователя
+USERNAME = "123-456-789 00"  # Ваш СНИЛС
+PASSWORD = "ваш_пароль"      # Ваш пароль
+EMAIL = ""                   # Если используется
+
+# Путь к профилю браузера Chrome
+# Windows: %LOCALAPPDATA%\Google\Chrome\User Data\Default
+# macOS: ~/Library/Application Support/Google/Chrome/Default
+# Linux: ~/.config/google-chrome/Default
+
+# Примеры правильных путей:
+# Windows: C:\\Users\\Username\\AppData\\Local\\Google\\Chrome\\User Data\\Default
+# macOS: /Users/username/Library/Application Support/Google/Chrome/Default
+# Linux: /home/username/.config/google-chrome/Default
+PATH_TO_CHROME_PROFILE = "/path/to/chrome/profile"
